@@ -1,0 +1,63 @@
+@import '~antd/dist/antd.css';
+
+
+.App-logo {text-align: center; padding-bottom:10px;}
+.App-logo img {width:200px;}
+.projectName {text-align: center; font-size: 20px; font-weight: 500; margin-bottom: 19px;}
+
+.ant-btn {padding: 6px 15px 10px 15px; font-size: 18px; line-height: 18px; font-weight:500; height:40px;}
+.ant-input {height:40px;}
+.ant-layout {background:#ffffff;}
+.ant-layout-header {background-color:#ffffff; padding:20px 0px 0px 0px; height:auto; line-height:normal;}
+.ant-layout-content {margin:40px 0px;min-height:800px;}
+.ant-layout-footer {padding: 20px 0px; text-align: center; background: #fff; border-top: 1px solid #ccc;}
+.ant-avatar {background-color:#1890ff;}
+
+.navbar {border:1px solid #ccc; padding:4px 0px; border-left:0px; border-right:0px;}
+.navbar .l {float:left;}
+.navbar .l a {float: left; padding: 10px 20px; background-color: #808080; color: #fff; margin-right: 2px; transition:0.5s; border-radius:4px;}
+.navbar .l a:hover {background-color: #1890ff;}
+.navbar .m {float:right; margin-top:3px;}
+.navbar .m a {padding:0px; display: block; font-size: 14px; line-height: 14px; font-weight: 600; color: #000; margin:4px 6px 0px 0px;}
+.navbar .r {float: right; margin: 10px 10px 0px 0px;}
+.navbar .r span {color: #1890ff; font-weight: 500;}
+
+.innerCont {padding:0px 20px;}
+.innerCont .ant-card {float: left; width: 350px; margin: 0px 20px 40px 0px;}
+.innerCont .price {text-align: right; margin-top: 20px; color: #1890ff; font-weight: 500;}
+
+.loginPage {position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%); max-width: 400px;}
+.loginPage .frm {box-shadow: 0px 0px 10px #ccc;padding: 34px 34px 0px 34px;border-radius: 6px;}
+.loginPage .ant-form {float:left; width: 100%;}
+.loginPage .login-form-forgot {float: right;}
+.loginPage .login-form-button {width: 100%;}
+
+.registerPage {position: relative;max-width: 540px;margin:50px auto 100px auto;}
+.registerPage .frm {box-shadow: 0px 0px 10px #ccc;padding: 34px 34px 10px 34px;border-radius: 6px;}
+.registerPage .ant-form {float:left; width: 100%;}
+.registerPage .ant-form-item-label {text-align: left;}
+.registerPage textarea {resize: none;}
+
+.resetPage {position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%); max-width: 400px;}
+.resetPage .frm {box-shadow: 0px 0px 10px #ccc;padding: 34px 34px 0px 34px;border-radius: 6px;}
+.resetPage .ant-form {float:left; width: 100%;}
+.resetPage .login-form-forgot {float: right;}
+.resetPage .login-form-button {width: 100%;}
+.resetPage .lbl {font-size:14px; line-height:18px; margin-bottom:10px;}
+.resetPage .ant-form-item {float:left; width:100%;}
+
+.about .dv {background-color:#f1f1f1; padding:20px 20px 10px 20px; margin:20px 0px; border-radius: 10px; color:#000000;}
+.about h2 {font-weight: 500; font-size: 16px; line-height: 20px; color: #1890ff; margin-bottom: 16px;}
+
+.users .ant-table-content img {width:34px;}
+.users .roleicon {width:1px; padding:0px;}
+.users .ant-tag  {margin-bottom:30px;}
+.users .ant-tag img {float:left;width:34px;}
+.users .ant-tag span {float:left; margin:6px 20px 0px 0px;}
+
+
+h1.ant-typography {font-weight: 500; font-size: 20px; line-height: 20px; color: #404040; margin-bottom: 30px; padding: 0px 0px 10px 0px; border-bottom: 1px dashed #404040;}
+
+
+.clear {clear:both;}
+
