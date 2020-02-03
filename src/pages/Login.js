@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { Typography } from 'antd';
-import { gql } from 'apollo-boost';
+// import { gql } from 'apollo-boost';
 
+import AuthContext from '../context/auth-context';
 import logo from '../assets/logo.png';
 
 const { Title } = Typography;
 
 class NormalLoginForm extends Component {
+
+  static contextType = AuthContext;
 
   submitHandler = (event) => {
     event.preventDefault();
@@ -16,15 +19,67 @@ class NormalLoginForm extends Component {
       var re = /\S+@\S+\.\S+/;
       if (!re.test(values.username)) {
         return this.props.form.setFields({
-          user: {
-            value: values.user,
+          username: {
+            value: values.username,
             errors: [new Error('Please enter a valid username')],
           },
         });
       }
       if (!err) {
-        console.log('Received values of form: ', this.props.data);
-        
+        let requestBody = {
+          query: `
+            query{
+              login(userName: "${values.username}", password: "${values.password}"){
+                _id
+                firstName
+                lastName
+                userRole
+                token
+                tokenExpiration
+              }
+            }
+          `
+        };
+
+        fetch('http://localhost:3000/api', {
+          method: 'POST',
+          body: JSON.stringify(requestBody),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+          .then(res => {
+            return res.json();
+          }).then(resData => {
+            if (resData.errors) {
+              if (resData.errors[0].status == 404) {
+                return this.props.form.setFields({
+                  username: {
+                    value: values.username,
+                    errors: [new Error(resData.errors[0].message)],
+                  },
+                  password: {
+                    value: ""
+                  }
+                });
+              }
+              throw new Error(resData.errors[0].message);
+            }
+            if (resData.data.login.token) {
+              this.context.login(
+                resData.data.login.token,
+                resData.data.login._id,
+                resData.data.login.firstName,
+                resData.data.login.lastName,
+                resData.data.login.userRole,
+                resData.data.login.tokenExpiration
+              );
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+
       }
     });
   };
@@ -80,24 +135,6 @@ class NormalLoginForm extends Component {
   }
 }
 
-// const LOGIN_POST = gql`
-// query Login($email: String!, $password: String!) {
-//   login(email: $email, password: $password) {
-//     userId
-//     token
-//     tokenExpiration
-//   }
-// }
-// `;
-// const USERS_POST = gql`
-//       query {
-//           users {
-//         userName
-//       }
-//     }
-//     `
-
 const LoginPage = Form.create({ name: 'normal_login' })(NormalLoginForm);
 
-// export default graphql(USERS_POST)(LoginPage);
 export default LoginPage;

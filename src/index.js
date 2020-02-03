@@ -1,27 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ApolloClient, { gql } from 'apollo-boost';
+import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+// import { useQuery } from '@apollo/react-hooks';
 
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const client = new ApolloClient({
-    uri: 'http://localhost:4000/api',
+    uri: 'http://localhost:3000/api',
 });
 
-client.query({
-    query: gql`
-      query {
-          users {
-        userName
-      }
-    }
-    `,
-})
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
+// client.query({
+//     query: gql`
+//       query {
+//           users {
+//             firstName
+//             lastName      
+//             userName
+//         }
+//     }
+//     `,
+// })
+//     .then(data => console.log(data))
+//     .catch(error => console.error(error));
 
 ReactDOM.render(
     <ApolloProvider client={client}>

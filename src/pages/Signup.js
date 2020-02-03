@@ -1,7 +1,9 @@
 import React from 'react'
 import { Form, Input, Tooltip, Icon, Select, Checkbox, Button } from 'antd';
 import { Typography } from 'antd';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
+// import Login from './Login';
 import logo from '../assets/logo.png';
 
 const { Title } = Typography;
@@ -12,13 +14,49 @@ const { Option } = Select;
 class RegistrationForm extends React.Component {
   state = {
     confirmDirty: false,
+    toLogin: false,
   };
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        let requestBody = {
+          query: `mutation{ signup( userInput: { firstName:"${values.firstname}", lastName: "${values.lastname}", userName: "${values.username}", password: "${values.password}", title:"${values.title}", companyName: "${values.companyname}", 
+            companyAddress: "${values.companyaddress}", telephone: ${parseInt(values.phone)}, userRole: "user"})
+            {
+              firstName
+            }
+          }`
+        };
+
+        fetch('http://localhost:3000/api', {
+          method: 'POST',
+          body: JSON.stringify(requestBody),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+          .then(res => {
+            return res.json();
+          }).then(resData => {
+            if (resData.errors) {
+              if(resData.errors[0].status == 400)
+              return this.props.form.setFields({
+                username: {
+                  value: values.username,
+                  errors: [new Error(resData.errors[0].message)],
+                },
+              });
+              throw new Error(resData.errors[0].message);
+            }
+            if (resData.data.signup) {
+              this.setState({ toLogin: true })
+            }
+          })
+          .catch(err => {
+            console.log(err)
+          });
       }
     });
   };
@@ -81,7 +119,9 @@ class RegistrationForm extends React.Component {
       </Select>,
     );
 
-
+    if (this.state.toLogin === true) {
+      return <Redirect to='/login' />
+    }
 
     return (
       <div className="registerPage">
@@ -126,20 +166,6 @@ class RegistrationForm extends React.Component {
                 rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
               })(<Input />)}
             </Form.Item>
-            <Form.Item label="E-mail">
-              {getFieldDecorator('email', {
-                rules: [
-                  {
-                    type: 'email',
-                    message: 'The input is not valid E-mail!',
-                  },
-                  {
-                    required: true,
-                    message: 'Please input your E-mail!',
-                  },
-                ],
-              })(<Input />)}
-            </Form.Item>
             <Form.Item
               label={
                 <span>
@@ -173,10 +199,18 @@ class RegistrationForm extends React.Component {
                 rules: [{ required: true, message: 'Please input your company address!', whitespace: true }],
               })(<TextArea rows={4} />)}
             </Form.Item>
-            <Form.Item label="Phone Number">
+
+
+            <Form.Item
+              label={
+                <span>
+                  Phone Number&nbsp;
+            </span>
+              }
+            >
               {getFieldDecorator('phone', {
                 rules: [{ required: true, message: 'Please input your phone number!' }],
-              })(<Input addonBefore={prefixSelector} style={{ width: '100%' }} />)}
+              })(<Input />)}
             </Form.Item>
             <Form.Item label="Password" hasFeedback>
               {getFieldDecorator('password', {
@@ -203,15 +237,6 @@ class RegistrationForm extends React.Component {
                   },
                 ],
               })(<Input.Password onBlur={this.handleConfirmBlur} />)}
-            </Form.Item>
-            <Form.Item {...tailFormItemLayout}>
-              {getFieldDecorator('agreement', {
-                valuePropName: 'checked',
-              })(
-                <Checkbox>
-                  I have read the <a href="/agreement">agreement</a>
-                </Checkbox>,
-              )}
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
               <Button type="primary" htmlType="submit">
