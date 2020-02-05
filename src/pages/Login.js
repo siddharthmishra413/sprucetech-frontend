@@ -120,7 +120,7 @@ class NormalLoginForm extends Component {
                 initialValue: true,
               })(<Checkbox>Remember me</Checkbox>)}
               <a className="login-form-forgot" href="/forgot">
-                Forgot password
+                <NavLink to="/forgot">Forgot password</NavLink>
           </a>
               <Button type="primary" htmlType="submit" className="login-form-button">
                 Log in

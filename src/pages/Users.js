@@ -33,11 +33,6 @@ const columns = [
         dataIndex: 'userName',
         key: 'userName',
     },
-    // {
-    //     title: 'email',
-    //     dataIndex: 'email',
-    //     key: 'email',
-    // },
     {
         title: 'Title',
         dataIndex: 'title',
@@ -82,7 +77,6 @@ class Users extends Component {
     state = {
         users: null,
         showFlag: false,
-        counter: 0
     }
 
     displayUser = () => {
@@ -118,12 +112,11 @@ class Users extends Component {
             })
     };
 
+    componentDidMount() {
+        this.displayUser()
+    }
 
     render() {
-        if (this.state.counter == 0) {
-            this.displayUser();
-            this.setState({ counter: 1 })
-        }
 
         return (
             <Layout>

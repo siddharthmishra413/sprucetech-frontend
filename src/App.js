@@ -3,9 +3,11 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Forgot from './pages/Forgot';
 import Awards from './pages/Awards';
 import About from './pages/About';
 import Users from './pages/Users';
+
 
 import AuthContext from './context/auth-context';
 import './App.css';
@@ -51,6 +53,7 @@ class App extends Component {
 
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/forgot" component={Forgot} />
             <Route path="/awards" component={Awards} />
             <Route path="/about" component={About} />
             <Route path="/users" component={Users} />
