@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 import { Typography } from 'antd';
 // import { gql } from 'apollo-boost';
 
@@ -115,10 +115,10 @@ class NormalLoginForm extends Component {
               )}
             </Form.Item>
             <Form.Item>
-              {getFieldDecorator('remember', {
+              {/* {getFieldDecorator('remember', {
                 valuePropName: 'checked',
                 initialValue: true,
-              })(<Checkbox>Remember me</Checkbox>)}
+              })(<Checkbox>Remember me</Checkbox>)} */}
               <NavLink to="/forgot" className="login-form-forgot">Forgot password</NavLink>
               <Button type="primary" htmlType="submit" className="login-form-button">
                 Log in
