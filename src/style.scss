@@ -1,0 +1,180 @@
+@import '~antd/dist/antd.css';
+
+// $font-stack: Helvetica, sans-serif;
+$bg-color: #fff;
+$text-color: #fff;
+$bg--secondary-color: #1890ff;
+$primary-color: #000;
+$font-size: 1rem;
+$text-center: center;
+$text-left: left;
+$text-right: right;
+$btn-hover-bg-color: #1890ff;
+
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }  
+
+ @mixin antCommonStyle($padding, $fontSize, $lineHeight, $fontWeight,$Height ) {
+     padding: $padding !important;
+     font-size: $fontSize !important;
+     line-height: $lineHeight !important;
+     font-weight: $fontWeight !important;
+     height: $Height !important;     
+ } 
+ @mixin floatText($float) {
+    float: $float;
+ } 
+ @mixin formCommonStyle($left, $width ) {
+   float: $left !important;
+   width: $width !important;
+} 
+
+body{background: $bg-color !important;}
+.ant-btn{
+    @include antCommonStyle(6px 15px 10px 15px,18px,18px, 500,40px)
+}
+.App-logo{
+    text-align: center; padding-bottom:10px;
+    img{
+        width:200px;
+    }
+}
+.ant-input{height:40px;}
+.ant-layout{background: $bg-color;}
+.ant-layout-header {background-color: $bg-color; padding:20px 0px 0px 0px; height:auto; line-height:normal;}
+.ant-layout-content {margin:40px 0px;min-height:800px;}
+.ant-layout-footer {padding: 20px 0px; text-align: $text-center; background: $bg-color; border-top: 1px solid #ccc;}
+.ant-avatar {background-color: $bg--secondary-color;}
+
+.navbar{
+    border:1px solid #ccc; padding:4px 0px; border-left:0px; border-right:0px;
+    .l{
+     float: $text-left;
+     a{
+        float: $text-left; padding: 10px 20px; background-color: #808080; color: $text-color; margin-right: 2px; transition:0.5s; border-radius:4px;
+        &:hover{
+            background-color: $btn-hover-bg-color;
+        }
+     }
+  
+    }
+    .m {
+        float:right; margin-top:3px;
+        a {
+            padding:0px; display: block; font-size: 14px; line-height: 14px; font-weight: 600; color: #000; margin:4px 6px 0px 0px;
+        }
+    }
+    .r{
+        float: right; margin: 10px 10px 0px 0px;
+        span {
+            color: #1890ff; font-weight: 500;
+        }
+
+    }
+   
+}
+
+.innerCont{
+    padding:0px 20px;
+    .ant-card {
+        @include floatText(left);
+        width: 350px; margin: 0px 20px 40px 0px;
+    }
+    .price {
+        @include floatText(right);
+         margin-top: 20px; color: #1890ff; font-weight: 500;
+    }
+}
+.projectName {text-align: center; font-size: 20px; font-weight: 500; margin-bottom: 19px;}
+
+.loginPage {
+    position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%); max-width: 400px;
+    .frm {
+        box-shadow: 0px 0px 10px #ccc;padding: 34px 34px 0px 34px;border-radius: 6px;
+    }
+    .ant-form {
+        @include formCommonStyle(left,100%);       
+      }
+      .login-form-forgot {
+        @include floatText(right)
+    }
+    .login-form-button {
+        width: 100%;
+    }
+}
+
+.registerPage {
+    position: relative;max-width: 540px;margin:50px auto 100px auto;
+    .frm {
+        box-shadow: 0px 0px 10px #ccc;padding: 34px 34px 0px 34px;border-radius: 6px;
+    }
+    .ant-form {
+        @include formCommonStyle(left,100%)
+    }
+    .login-form-forgot {
+       @include floatText(right)
+    }
+    .login-form-button {
+        width: 100%;
+    }
+    .lbl {
+        font-size:14px; line-height:18px; margin-bottom:10px;
+    }
+    .ant-form-item {
+        @include formCommonStyle(left,100%)
+    }
+}
+
+
+.resetPage {
+    position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%); max-width: 400px;
+    .frm {box-shadow: 0px 0px 10px #ccc;padding: 34px 34px 0px 34px;border-radius: 6px;}
+    .ant-form {  @include formCommonStyle(left,100%);}
+    .login-form-forgot {float: right;}
+    .login-form-button {width: 100%;}
+    .lbl {font-size:14px; line-height:18px; margin-bottom:10px;}
+    .ant-form-item {@include formCommonStyle(left,100%); }
+}
+.about{
+    .dv {
+        background-color:#f1f1f1; padding:20px 20px 10px 20px; margin:20px 0px; border-radius: 10px; color:#000000;
+    }
+    h2 {
+        font-weight: 500; font-size: 16px; line-height: 20px; color: #1890ff; margin-bottom: 16px;
+    }
+}
+.users{
+    .ant-table-content {
+        img {
+            width:34px;
+        }
+    }
+    .roleicon {
+        width:1px; padding:0px;
+    }
+    .ant-tag {
+        margin-bottom:30px;
+        img {
+            float:left;width:34px;
+        }
+        span {
+            float:left; margin:6px 20px 0px 0px;
+        }
+    }
+}
+h1.ant-typography {font-weight: 500; font-size: 20px; line-height: 20px; color: #404040; margin-bottom: 30px; padding: 0px 0px 10px 0px; border-bottom: 1px dashed #404040;}
+
+.clear {clear:both;}
+
+
+
+
+
+
+
+
+
+

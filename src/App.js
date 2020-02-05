@@ -12,6 +12,8 @@ import Reset from './pages/Reset';
 
 import AuthContext from './context/auth-context';
 import './App.css';
+//import './style.scss';
+
 
 class App extends Component {
   state = {
