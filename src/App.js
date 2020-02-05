@@ -7,6 +7,7 @@ import Forgot from './pages/Forgot';
 import Awards from './pages/Awards';
 import About from './pages/About';
 import Users from './pages/Users';
+import Reset from './pages/Reset';
 
 
 import AuthContext from './context/auth-context';
@@ -22,10 +23,14 @@ class App extends Component {
   };
 
   login = (token, _id, firstName, lastName, userRole, tokenExpiration) => {
+    let data = { token: token, _id: _id, firstName: firstName, lastName: lastName, userRole: userRole }
+    let dataDup = JSON.stringify(data)
+    localStorage.setItem("userData", dataDup);
     this.setState({ token: token, _id: _id, firstName: firstName, lastName: lastName, userRole: userRole });
   };
 
   logout = () => {
+    localStorage.removeItem("userData");
     this.setState({ token: null, _id: null, firstName: null, lastName: null, userRole: null });
   };
 
@@ -36,8 +41,8 @@ class App extends Component {
           value={{
             token: this.state.token,
             _id: this.state._id,
-            firstName: this.state.firstName, 
-            lastName: this.state.lastName, 
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
             userRole: this.state.userRole,
             login: this.login,
             logout: this.logout
@@ -57,6 +62,7 @@ class App extends Component {
             <Route path="/awards" component={Awards} />
             <Route path="/about" component={About} />
             <Route path="/users" component={Users} />
+            <Route path="/reset-password/:refreshTokenForPassword" component={Reset} />
           </Switch>
         </AuthContext.Provider>
       </BrowserRouter>

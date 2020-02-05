@@ -80,10 +80,11 @@ class Users extends Component {
     }
 
     displayUser = () => {
+        let data = JSON.parse(localStorage.getItem('userData'));
+
         let requestBody = {
             query: `
-        query {
-            users { 
+        query {users { 
               firstName 
               lastName      
               userName
@@ -101,14 +102,18 @@ class Users extends Component {
             method: 'POST',
             body: JSON.stringify(requestBody),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'api_token': data.token
             }
         })
             .then(res => {
                 return res.json();
             }).then(resData => {
-                this.setState({ users: [...resData.data.users], showFlag: true })
-                console.log("called")
+                let data = resData.data.users.map((element, index)=>{
+                    element.key = index
+                    return element;
+                })
+                this.setState({ users: [...data], showFlag: true })
             })
     };
 

@@ -1,11 +1,17 @@
 import React from 'react'
 import logo from '../assets/logo.png';
 import { Form, Icon, Input, Button } from 'antd';
+import { NavLink } from 'react-router-dom';
 import { Typography } from 'antd';
 
 const { Title } = Typography;
 
 class ForgotForm extends React.Component {
+
+  state = {
+    showLinkFlag: false,
+    link: ""
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -33,12 +39,15 @@ class ForgotForm extends React.Component {
             return res.json();
           })
           .then(resdata => {
-            console.log("resdata====================>", resdata)
+            if (resdata.data.forgotPassword.link) {
+              this.setState({
+                showLinkFlag: true,
+                link: resdata.data.forgotPassword.link,
+              })
+            }
           })
           .catch(err => {
-            console.log("------------------error", err);
           });
-
       }
     });
   };
@@ -70,9 +79,12 @@ class ForgotForm extends React.Component {
               <a href="/">Back to Sign In</a>
             </Form.Item>
           </Form>
+
           <div className="clear"></div>
         </div>
+        {this.state.showLinkFlag === true ? <div className="rst"><NavLink to={this.state.link}>Please click on the link to reset your password</NavLink></div> : ""}
       </div>
+
     );
   }
 }

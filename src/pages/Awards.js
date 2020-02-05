@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Layout } from 'antd';
 import HeaderComp from './Header';
 import FooterComp from './Footer';
-import logo from '../assets/logo.png';
 
 
 import { Card } from 'antd';

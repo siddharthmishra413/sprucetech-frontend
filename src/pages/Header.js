@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { Layout } from 'antd';
 import logo from '../assets/logo.png';
@@ -21,7 +21,7 @@ const HeaderComp = props => (
                         <div className="l">
                             <NavLink to="/awards">Awards</NavLink>
                             <NavLink to="/about">About Clio</NavLink>
-                            {context.userRole == 'admin' && <NavLink to="/users">Registered Users</NavLink>}
+                            {context.userRole === 'admin' && <NavLink to="/users">Registered Users</NavLink>}
                         </div>
                         <div className="m">
                             <Dropdown overlay={

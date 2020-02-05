@@ -52,7 +52,7 @@ class NormalLoginForm extends Component {
             return res.json();
           }).then(resData => {
             if (resData.errors) {
-              if (resData.errors[0].status == 404) {
+              if (resData.errors[0].status === 404) {
                 return this.props.form.setFields({
                   username: {
                     value: values.username,
@@ -119,9 +119,7 @@ class NormalLoginForm extends Component {
                 valuePropName: 'checked',
                 initialValue: true,
               })(<Checkbox>Remember me</Checkbox>)}
-              <a className="login-form-forgot" href="/forgot">
-                <NavLink to="/forgot">Forgot password</NavLink>
-          </a>
+              <NavLink to="/forgot" className="login-form-forgot">Forgot password</NavLink>
               <Button type="primary" htmlType="submit" className="login-form-button">
                 Log in
           </Button>

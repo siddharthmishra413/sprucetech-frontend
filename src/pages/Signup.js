@@ -1,14 +1,14 @@
 import React from 'react'
-import { Form, Input, Tooltip, Icon, Select, Checkbox, Button } from 'antd';
+import { Form, Input, Tooltip, Icon, Button } from 'antd';
 import { Typography } from 'antd';
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 // import Login from './Login';
 import logo from '../assets/logo.png';
 
 const { Title } = Typography;
 const { TextArea } = Input;
-const { Option } = Select;
+// const { Option } = Select;
 
 
 class RegistrationForm extends React.Component {
@@ -41,13 +41,13 @@ class RegistrationForm extends React.Component {
             return res.json();
           }).then(resData => {
             if (resData.errors) {
-              if(resData.errors[0].status == 400)
-              return this.props.form.setFields({
-                username: {
-                  value: values.username,
-                  errors: [new Error(resData.errors[0].message)],
-                },
-              });
+              if (resData.errors[0].status === 400)
+                return this.props.form.setFields({
+                  username: {
+                    value: values.username,
+                    errors: [new Error(resData.errors[0].message)],
+                  },
+                });
               throw new Error(resData.errors[0].message);
             }
             if (resData.data.signup) {
@@ -110,14 +110,14 @@ class RegistrationForm extends React.Component {
         },
       },
     };
-    const prefixSelector = getFieldDecorator('prefix', {
-      initialValue: '91',
-    })(
-      <Select style={{ width: 70 }}>
-        <Option value="91">+91</Option>
-        <Option value="44">+44</Option>
-      </Select>,
-    );
+    // const prefixSelector = getFieldDecorator('prefix', {
+    //   initialValue: '91',
+    // })(
+    //   <Select style={{ width: 70 }}>
+    //     <Option value="91">+91</Option>
+    //     <Option value="44">+44</Option>
+    //   </Select>,
+    // );
 
     if (this.state.toLogin === true) {
       return <Redirect to='/login' />
