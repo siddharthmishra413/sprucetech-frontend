@@ -15,7 +15,7 @@ mutation($userName: String!, $password: String!) {
 export const SIGNUP_USER = gql`
 mutation($firstName: String!, $lastName: String!, $userName: String!, $password: String!, $title: String!, $companyName: String!,
   $companyAddress: String!,  $telephone: Float!, $userRole: String ){
-    signup(firstName: $firstName, lastName: $lastName, userName: $userName, password: $password, title: $title, companyName: $companyName, companyAddress: $companyAddress, telephone: $telephone, userRole: $userRole){
+    signup(userInput: {firstName: $firstName, lastName: $lastName, userName: $userName, password: $password, title: $title, companyName: $companyName, companyAddress: $companyAddress, telephone: $telephone, userRole: $userRole}){
       firstName
   }
 }`;

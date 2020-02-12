@@ -28,9 +28,32 @@ class RegistrationForm extends React.Component {
     userRole: null
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+
+  submitHandler = (event, registration) => {
+    event.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      this.updateState(values).then(() => {
+        if (!err) {
+          registration().then(async ({ data }) => {
+            if (data.signup.firstName) {
+              this.context.signup(
+               data.signup.firstName,
+               data.signup.__typename
+              );
+            }
+          })
+            .catch((error) => {
+              let errorType = JSON.parse((JSON.stringify(error)))
+            })
+        };
+      })
+    })
+  }
+
+  updateState = (values) => {
+    return new Promise((resolve, reject) => {
+      this.setState({ firstName: values.firstname, lastName: values.lastname, userName: values.username, password: values.password, title: values.title, companyName: values.companyname, companyAddress: values.companyaddress, telephone: Number(values.phone), userRole: 'user' })
+      resolve();
     })
   }
 
@@ -106,7 +129,7 @@ class RegistrationForm extends React.Component {
               <div className="projectName">Nemo</div>
               <div className="frm">
                 <Title>Register Now</Title>
-                <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+                <Form {...formItemLayout} onSubmit={event => this.submitHandler(event, signUp)}>
                   <Form.Item
                     label={
                       <span>
