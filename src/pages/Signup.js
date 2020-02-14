@@ -25,21 +25,17 @@ class RegistrationForm extends React.Component {
     companyName: null,
     companyAddress: null,
     telephone: null,
-    userRole: null
   };
 
 
-  submitHandler = (event, registration) => {
+  submitHandler = (event, signUp) => {
     event.preventDefault();
     this.props.form.validateFields((err, values) => {
       this.updateState(values).then(() => {
         if (!err) {
-          registration().then(async ({ data }) => {
-            if (data.signup.firstName) {
-              this.context.signup(
-               data.signup.firstName,
-               data.signup.__typename
-              );
+          signUp().then(async ({ data }) => {
+            if(data.signup){
+              this.setState({ toLogin: true })
             }
           })
             .catch((error) => {
@@ -52,7 +48,7 @@ class RegistrationForm extends React.Component {
 
   updateState = (values) => {
     return new Promise((resolve, reject) => {
-      this.setState({ firstName: values.firstname, lastName: values.lastname, userName: values.username, password: values.password, title: values.title, companyName: values.companyname, companyAddress: values.companyaddress, telephone: Number(values.phone), userRole: 'user' })
+      this.setState({ firstName: values.firstname, lastName: values.lastname, userName: values.username, password: values.password, title: values.title, companyName: values.companyname, companyAddress: values.companyaddress, telephone: Number(values.phone) })
       resolve();
     })
   }
@@ -120,7 +116,7 @@ class RegistrationForm extends React.Component {
     }
 
     return (
-      <Mutation mutation={SIGNUP_USER} variables={{ firstName: this.state.firstName, lastName: this.state.lastName, userName: this.state.userName, password: this.state.password, title: this.state.title, companyName: this.state.companyName, companyAddress: this.state.companyAddress, telephone: this.state.telephone, userRole: this.state.userRole }}>
+      <Mutation mutation={SIGNUP_USER} variables={{ firstName: this.state.firstName, lastName: this.state.lastName, userName: this.state.userName, password: this.state.password, title: this.state.title, companyName: this.state.companyName, companyAddress: this.state.companyAddress, telephone: this.state.telephone }}>
         {(signUp, { data, loading, error }) => {
 
           return (

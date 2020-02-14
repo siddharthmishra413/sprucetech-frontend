@@ -6,6 +6,7 @@ export default React.createContext({
     firstName: null,
     lastName: null,
     userRole: null,
+    isAdmin: null,
     tokenExpiration: null,
     login: (token, _id, firstName, lastName, userRole, tokenExpiration) => { },
     logout: () => { }

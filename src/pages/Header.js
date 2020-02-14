@@ -21,7 +21,7 @@ const HeaderComp = props => (
                         <div className="l">
                             <NavLink to="/awards">Awards</NavLink>
                             <NavLink to="/about">About Clio</NavLink>
-                            {context.userRole === 'admin' && <NavLink to="/users">Registered Users</NavLink>}
+                            {context.isAdmin && <NavLink to="/users">Registered Users</NavLink>}
                         </div>
                         <div className="m">
                             <Dropdown overlay={
@@ -35,7 +35,7 @@ const HeaderComp = props => (
                                 </div>
                             </Dropdown>
                         </div>
-                        <div className="r">Welcome! {context.firstName} {context.lastName} <span>({context.userRole})</span></div>
+                        <div className="r">Welcome! {context.firstName} {context.lastName} <span>({context.isAdmin ? 'admin' : 'user'})</span></div>
                         <div className="clear"></div>
                     </div>
                 </Header>

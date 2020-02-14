@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import logo from '../assets/logo.png';
 import { Form, Input, Button } from 'antd';
 import { Typography } from 'antd';
-
-
 
 const { Title } = Typography;
 
@@ -15,9 +13,8 @@ class ResetForm extends React.Component {
     showFormFlag: false,
     userId: null,
     refreshToken: null,
-    redirectToLogin: false,
+    redirectToLogin: false
   };
-
 
   handleSubmit = e => {
     e.preventDefault();
@@ -32,7 +29,7 @@ class ResetForm extends React.Component {
   handleConfirmBlur = e => {
     const { value } = e.target;
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  }
+  };
 
   compareToFirstPassword = (rule, value, callback) => {
     const { form } = this.props;
@@ -76,11 +73,10 @@ class ResetForm extends React.Component {
             showFormFlag: true,
             userId: resdata.data.tokenVerification.userId,
             refreshToken: refreshTokenForPassword
-          })
+          });
         }
       })
-      .catch(err => {
-      });
+      .catch(err => {});
   }
 
   updatePassword(password) {
@@ -100,11 +96,10 @@ class ResetForm extends React.Component {
       })
       .then(resdata => {
         if (resdata.data.passwordReset) {
-          this.setState({ redirectToLogin: true })
+          this.setState({ redirectToLogin: true });
         }
       })
-      .catch(err => {
-      });
+      .catch(err => {});
   }
 
   componentDidMount() {
@@ -112,53 +107,58 @@ class ResetForm extends React.Component {
     this.tokenVerification(refreshTokenForPassword);
   }
 
-
   render() {
     const { getFieldDecorator } = this.props.form;
 
     if (this.state.redirectToLogin === true) {
-      return <Redirect to='/login' />
+      return <Redirect to="/login" />;
     }
     return (
       <div className="resetPage">
-        <div className="App-logo"><img src={logo} alt="logo" /></div>
+        <div className="App-logo">
+          <img src={logo} alt="logo" />
+        </div>
         <div className="projectName">Nemo</div>
         <div className="frm">
           <Title>Reset Password</Title>
-          {this.state.showFormFlag ? <div className="lbl">Please enter new password.</div> : ""}
-          {this.state.showFormFlag ? <Form onSubmit={this.handleSubmit} className="login-form">
-            <Form.Item label="Password" hasFeedback>
-              {getFieldDecorator('password', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input your password!',
-                  },
-                  {
-                    validator: this.validateToNextPassword,
-                  },
-                ],
-              })(<Input.Password />)}
-            </Form.Item>
-            <Form.Item label="Confirm Password" hasFeedback>
-              {getFieldDecorator('confirm', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please confirm your password!',
-                  },
-                  {
-                    validator: this.compareToFirstPassword,
-                  },
-                ],
-              })(<Input.Password onBlur={this.handleConfirmBlur} />)}
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" htmlType="submit" className="login-form-button">
-                Reset Password
-            </Button>
-            </Form.Item>
-          </Form> : <p>Token Expired!</p>}
+          {this.state.showFormFlag ? <div className="lbl">Please enter new password.</div> : ''}
+          {this.state.showFormFlag ? (
+            <Form onSubmit={this.handleSubmit} className="login-form">
+              <Form.Item label="Password" hasFeedback>
+                {getFieldDecorator('password', {
+                  rules: [
+                    {
+                      required: true,
+                      message: 'Please input your password!'
+                    },
+                    {
+                      validator: this.validateToNextPassword
+                    }
+                  ]
+                })(<Input.Password />)}
+              </Form.Item>
+              <Form.Item label="Confirm Password" hasFeedback>
+                {getFieldDecorator('confirm', {
+                  rules: [
+                    {
+                      required: true,
+                      message: 'Please confirm your password!'
+                    },
+                    {
+                      validator: this.compareToFirstPassword
+                    }
+                  ]
+                })(<Input.Password onBlur={this.handleConfirmBlur} />)}
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary" htmlType="submit" className="login-form-button">
+                  Reset Password
+                </Button>
+              </Form.Item>
+            </Form>
+          ) : (
+            <p>Token Expired!</p>
+          )}
           <div className="clear"></div>
         </div>
       </div>
@@ -168,4 +168,4 @@ class ResetForm extends React.Component {
 
 const WrappedResetForm = Form.create({ name: 'reset_password' })(ResetForm);
 
-export default WrappedResetForm
+export default WrappedResetForm;
