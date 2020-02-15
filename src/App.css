@@ -12,7 +12,7 @@
 .ant-layout-content {margin:40px 0px;min-height:800px;}
 .ant-layout-footer {padding: 20px 0px; text-align: center; background: #fff; border-top: 1px solid #ccc;}
 .ant-avatar {background-color:#1890ff;}
-
+.innerCont .award-header{background: #ddd;padding: 40px;}
 .navbar {border:1px solid #ccc; padding:4px 0px; border-left:0px; border-right:0px;}
 .navbar .l {float:left;}
 .navbar .l a {float: left; padding: 10px 20px; background-color: #808080; color: #fff; margin-right: 2px; transition:0.5s; border-radius:4px;}
@@ -62,3 +62,81 @@ h1.ant-typography {font-weight: 500; font-size: 20px; line-height: 20px; color: 
 
 .clear {clear:both;}
 
+
+/***************taxonomy page *********************/
+.mt {margin-top: 30px;}
+  
+.media-plyr-upd {
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  }
+  
+  .actv-itm {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  .media-plyr-body .content-col p label {
+    margin-left: 20px;
+  }
+  .upd-prgm-btn button {
+    background: #af7c7c;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    outline: none;
+    padding: 0 20px;
+  }
+  .upd-prgm-btn button:hover {
+    background: #808080;
+  }
+  .list-item-main{
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s;
+    margin: 30px 20px 30px 0px;
+  }
+  .list-item {
+    border: 1px solid #ddd;
+    padding: 10px 20px 0px 30px;    
+    min-height: 200px;
+  }
+  .list-item-main .md-ft-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .list-item-main .md-ft-btn .md-bt-col{
+    flex: 0 0 50%;
+    max-width: 50%;
+    border-right: 1px solid #ddd;
+  }
+  .list-item-main .md-ft-btn .md-bt-col button{
+    background: #fff;
+    outline: none;
+    color: #000;
+    border: 0;
+    border-radius: 0px !important;
+  }
+
+  .list-item-main .md-ft-btn .md-bt-col button.active{
+    background: #cf705b;
+    color: #fff;
+  }
+
+  .list-item-main .md-ft-btn .md-bt-col .cust-entry{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px !important;
+  }
+  .list-item-main .md-ft-btn .md-bt-col .cust-entry input{
+         margin-left: 10px;
+         width: 20px;
+         height: 20px;
+  }
+  .mediums-tabs {
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+  .title-entry{padding: 10px 30px;}
+ 

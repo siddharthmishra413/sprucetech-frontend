@@ -1,13 +1,16 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { Layout } from 'antd';
+import {Layout, Menu, Dropdown, Button, Icon, message } from 'antd';
 import logo from '../assets/logo.png';
-import { Menu, Dropdown } from 'antd';
 import { Avatar } from 'antd';
-
 import AuthContext from '../context/auth-context';
 
 const { Header } = Layout;
+function handleMenuClick(e) {
+  message.info('Click on menu item.');
+  console.log('click', e);
+}
+
 
 const HeaderComp = props => (
 
@@ -19,9 +22,11 @@ const HeaderComp = props => (
                     <div className="projectName">Nemo</div>
                     <div className="navbar">
                         <div className="l">
-                            <NavLink to="/awards">Awards</NavLink>
+                            <NavLink to="/awardspage">Awards</NavLink>
                             <NavLink to="/about">About Clio</NavLink>
                             {context.isAdmin && <NavLink to="/users">Registered Users</NavLink>}
+                            {/* {context.isAdmin && <NavLink to="/managetaxonomy">Manage texonomy</NavLink>} */}
+                            <NavLink to="/taxonomy">Manage Taxonomy</NavLink>
                         </div>
                         <div className="m">
                             <Dropdown overlay={

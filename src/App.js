@@ -5,9 +5,13 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Forgot from './pages/Forgot';
 import Awards from './pages/Awards';
+import AwardPage from './pages/AwardPage';
 import About from './pages/About';
 import Users from './pages/Users';
 import Reset from './pages/Reset';
+import Mediums from './pages/awardspages/Mediums';
+import Taxonomy from './pages/awardspages/Taxonomy';
+
 
 
 import AuthContext from './context/auth-context';
@@ -57,19 +61,21 @@ class App extends Component {
           }}>
           <Switch>
             {!this.state.token && <Redirect from="/" to="/login" exact />}
-            {!this.state.token && <Redirect from="/awards" to="/login" exact />}
+            {!this.state.token && <Redirect from="/awardspage" to="/login" exact />}
             {!this.state.token && <Redirect from="/about" to="/login" exact />}
             {!this.state.token && <Redirect from="/users" to="/login" exact />}
 
-            {this.state.token && <Redirect from="/login" to="/awards" exact />}
-            {this.state.token && <Redirect from="/" to="/awards" exact />}
+            {/* {this.state.token && <Redirect from="/login" to="/awards" exact />} */}
+            {this.state.token && <Redirect from="/login" to="/awardspage" exact />}
 
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/forgot" component={Forgot} />
-            <Route path="/awards" component={Awards} />
+            <Route path="/awardspage" component={AwardPage} />
             <Route path="/about" component={About} />
             <Route path="/users" component={Users} />
+            <Route path="/taxonomy" component={Taxonomy} />
+            <Route path="/mediums" component={Mediums} />
             <Route path="/reset-password/:refreshTokenForPassword" component={Reset} />
           </Switch>
         </AuthContext.Provider>
