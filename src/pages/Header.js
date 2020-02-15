@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {Layout, Menu, Dropdown, Button, Icon, message } from 'antd';
 import logo from '../assets/logo.png';
@@ -49,5 +49,4 @@ const HeaderComp = props => (
     </AuthContext.Consumer>
 );
 
-
-export default HeaderComp
+export default HeaderComp;

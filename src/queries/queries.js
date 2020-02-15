@@ -52,6 +52,15 @@ export const FORGOT_USER = gql`
   }
 `;
 
+export const TOKEN_VERIFICATION = gql`
+  query($refreshTokenForPassword: String!) {
+    tokenVerification(refreshTokenForPassword: $refreshTokenForPassword) {
+      userName
+      userId
+    }
+  }
+`;
+
 export const RESET_PASSWORD = gql`
   mutation($refreshToken: String!, $userId: ID!, $newPassword: String!) {
     passwordReset(refreshToken: $refreshToken, userId: $userId, newPassword: $newPassword) {

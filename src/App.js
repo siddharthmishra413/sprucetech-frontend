@@ -13,11 +13,9 @@ import Mediums from './pages/awardspages/Mediums';
 import Taxonomy from './pages/awardspages/Taxonomy';
 
 
-
 import AuthContext from './context/auth-context';
-import './App.css';
-//import './style.scss';
-
+//import './App.css';
+import './style.scss';
 
 class App extends Component {
   state = {
@@ -30,18 +28,32 @@ class App extends Component {
   };
 
   login = (token, _id, firstName, lastName, userRole, tokenExpiration) => {
-    let isAdmin = null
+    let isAdmin = null;
     let role = userRole.map(element => element.role);
-    role.includes("admin") ? isAdmin = true : isAdmin = false;
+    role.includes('admin') ? (isAdmin = true) : (isAdmin = false);
 
-    let data = { token: token, _id: _id, firstName: firstName, lastName: lastName, userRole: userRole }
-    let dataDup = JSON.stringify(data)
-    localStorage.setItem("userData", dataDup);
-    this.setState({ token: token, _id: _id, firstName: firstName, lastName: lastName, userRole: userRole, isAdmin: isAdmin });
+    let data = {
+      token: token,
+      _id: _id,
+      firstName: firstName,
+      lastName: lastName,
+      userRole: userRole
+    };
+    let dataDup = JSON.stringify(data);
+    localStorage.setItem('userData', dataDup);
+    this.setState({
+      token: token,
+      _id: _id,
+      firstName: firstName,
+      lastName: lastName,
+      userRole: userRole,
+      isAdmin: isAdmin
+    });
   };
 
   logout = () => {
-    localStorage.removeItem("userData");
+    localStorage.removeItem('userData');
+    this.props.client.resetStore();
     this.setState({ token: null, _id: null, firstName: null, lastName: null, userRole: null });
   };
 
@@ -58,7 +70,8 @@ class App extends Component {
             isAdmin: this.state.isAdmin,
             login: this.login,
             logout: this.logout
-          }}>
+          }}
+        >
           <Switch>
             {!this.state.token && <Redirect from="/" to="/login" exact />}
             {!this.state.token && <Redirect from="/awardspage" to="/login" exact />}
