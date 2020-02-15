@@ -13,7 +13,8 @@ const httpLink = new HttpLink({
 
 const authLink = new ApolloLink((operation, forward) => {
   let data = JSON.parse(localStorage.getItem('userData'));
-  let token = data.token;
+  let token = null;
+  if (data) token = data.token;
   operation.setContext({
     headers: {
       api_token: token ? token : ''
@@ -29,7 +30,7 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <App client={client} />
   </ApolloProvider>,
   document.getElementById('root')
 );

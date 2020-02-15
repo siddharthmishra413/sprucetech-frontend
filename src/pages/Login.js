@@ -38,7 +38,6 @@ class NormalLoginForm extends Component {
             })
             .catch(error => {
               let errorType = JSON.parse(JSON.stringify(error));
-              console.log('----------------->>', errorType);
               return this.props.form.setFields({
                 username: {
                   value: values.username,
