@@ -8,14 +8,17 @@ import Awards from './pages/Awards';
 import AwardPage from './pages/AwardPage';
 import About from './pages/About';
 import Users from './pages/Users';
+import EditUser from './pages/EditUser';
 import Reset from './pages/Reset';
+import ManageRoles from './pages/ManageRoles';
+import AddRole from './pages/AddRole';
 import Mediums from './pages/awardspages/Mediums';
 import Taxonomy from './pages/awardspages/Taxonomy';
 
 
 import AuthContext from './context/auth-context';
-//import './App.css';
-import './style.scss';
+import './App.css';
+//import './style.scss';
 
 class App extends Component {
   state = {
@@ -87,8 +90,11 @@ class App extends Component {
             <Route path="/awardspage" component={AwardPage} />
             <Route path="/about" component={About} />
             <Route path="/users" component={Users} />
+            <Route path="/edituser" component={EditUser} />
             <Route path="/taxonomy" component={Taxonomy} />
             <Route path="/mediums" component={Mediums} />
+            <Route path="/manageroles" component={ManageRoles} />
+            <Route path="/addrole" component={AddRole} />
             <Route path="/reset-password/:refreshTokenForPassword" component={Reset} />
           </Switch>
         </AuthContext.Provider>

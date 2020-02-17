@@ -58,5 +58,10 @@ export const Columns = [
     title: 'Updated At',
     dataIndex: 'updatedAt',
     key: 'updatedAt'
+  },
+  {
+    title: 'Action',
+    dataIndex: 'action',
+    key: 'action'
   }
 ];

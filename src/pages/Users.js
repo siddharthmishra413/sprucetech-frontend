@@ -43,7 +43,7 @@ class Users extends Component {
                 <HeaderComp />
                 <Content>
                   <h1>Registered Users</h1>
-                  <Tag color="volcano">
+                  {/* <Tag color="volcano">
                     <img src={icon_clioadmin} alt={icon_clioadmin} />
                     <span>Clio Admin</span>
                   </Tag>
@@ -54,7 +54,7 @@ class Users extends Component {
                   <Tag color="geekblue">
                     <img src={icon_entrant} alt={icon_entrant} />
                     <span>Entrant</span>
-                  </Tag>
+                  </Tag> */}
                   {!loading && data.users.length && (
                     <Table columns={Columns} dataSource={this.displayUsers(data)} />
                   )}
