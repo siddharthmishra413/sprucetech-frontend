@@ -72,6 +72,7 @@ export const RESET_PASSWORD = gql`
 export const GET_USER = gql`
   query {
     users {
+      _id
       firstName
       lastName
       userName
@@ -84,6 +85,44 @@ export const GET_USER = gql`
       }
       createdAt
       updatedAt
+    }
+  }
+`;
+
+export const CREATE_ROLE = gql`
+  mutation($role: String!) {
+    createRole(roleInput: { role: $role }) {
+      role
+    }
+  }
+`;
+
+export const GET_ROLE = gql`
+  query {
+    roles {
+      _id
+      role
+    }
+  }
+`;
+
+export const USER_DETAIL_ROLE = gql`
+  query($id: ID!) {
+    userDetail(id: $id) {
+      _id
+      firstName
+      lastName
+      userName
+      title
+      companyName
+      companyAddress
+      telephone
+      userRole {
+        role
+      }
+      createdAt
+      updatedAt
+      role
     }
   }
 `;

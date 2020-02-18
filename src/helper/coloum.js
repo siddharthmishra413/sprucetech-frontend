@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export const Columns = [
   {
@@ -62,6 +63,11 @@ export const Columns = [
   {
     title: 'Action',
     dataIndex: 'action',
-    key: 'action'
+    key: 'action',
+    render: (text, record) => (
+      <span>
+        <NavLink to={'/edituser/' + record._id}>Edit</NavLink>
+      </span>
+    )
   }
 ];

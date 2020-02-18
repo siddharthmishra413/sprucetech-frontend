@@ -15,7 +15,6 @@ import AddRole from './pages/AddRole';
 import Mediums from './pages/awardspages/Mediums';
 import Taxonomy from './pages/awardspages/Taxonomy';
 
-
 import AuthContext from './context/auth-context';
 import './App.css';
 //import './style.scss';
@@ -90,12 +89,13 @@ class App extends Component {
             <Route path="/awardspage" component={AwardPage} />
             <Route path="/about" component={About} />
             <Route path="/users" component={Users} />
-            <Route path="/edituser" component={EditUser} />
+            <Route path="/edituser/:id" component={EditUser} />
             <Route path="/taxonomy" component={Taxonomy} />
             <Route path="/mediums" component={Mediums} />
-            <Route path="/manageroles" component={ManageRoles} />
+            <Route path="/managerole" component={ManageRoles} />
             <Route path="/addrole" component={AddRole} />
             <Route path="/reset-password/:refreshTokenForPassword" component={Reset} />
+            <Route path="/login" component={Login} />
           </Switch>
         </AuthContext.Provider>
       </BrowserRouter>
